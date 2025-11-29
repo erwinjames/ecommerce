@@ -8,11 +8,21 @@ use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        }
+
+        $products = $query->get();
+
         return Inertia::render('products/index', [
-            'products' => $products
+            'products' => $products,
+            'filters' => $request->only(['search']),
         ]);
     }
 

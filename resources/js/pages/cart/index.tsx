@@ -13,11 +13,7 @@ interface CartItem {
     quantity: number;
 }
 
-interface Props {
-    cartItems: CartItem[];
-}
-
-export default function Index({ cartItems }: Props) {
+export default function Index() {
     const { items, removeFromCart, updateQuantity, clearCart, totalPrice } = useCart();
 
     // Sync with server-side cart on mount
@@ -71,7 +67,7 @@ export default function Index({ cartItems }: Props) {
                                         : `${items.length} ${items.length === 1 ? 'item' : 'items'} in your cart`}
                                 </p>
                             </div>
-                            <Link href="/products">
+                            <Link href="/dashboard">
                                 <Button variant="outline" className="gap-2">
                                     <ArrowLeft className="w-4 h-4" />
                                     Continue Shopping
@@ -91,7 +87,7 @@ export default function Index({ cartItems }: Props) {
                                 <p className="text-gray-500 dark:text-gray-400 mb-8">
                                     Looks like you haven't added anything to your cart yet.
                                 </p>
-                                <Link href="/products">
+                                <Link href="/dashboard">
                                     <Button className="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
                                         Start Shopping
                                     </Button>

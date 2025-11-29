@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
 import { useCart } from '@/hooks/use-cart';
 import ProductForm from '@/components/ProductForm';
+import { ProductImageViewer } from '@/components/ProductImageViewer';
 import { useState } from 'react';
 
 interface Product {
@@ -89,17 +90,17 @@ export default function Index({ products }: Props) {
                             >
                                 <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-zinc-800">
                                     {product.image ? (
-                                        <img
+                                        <ProductImageViewer
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            className="w-full h-full"
                                         />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center text-gray-400">
                                             No Image
                                         </div>
                                     )}
-                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-gray-900">
+                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-bold text-gray-900 pointer-events-none">
                                         New
                                     </div>
                                 </div>
